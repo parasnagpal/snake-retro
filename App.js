@@ -4,7 +4,9 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <View style={styles.grid}>
+
+      </View>
     </View>
   );
 }
@@ -12,8 +14,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: 'black',
     justifyContent: 'center',
   },
+  grid:{
+    backgroundColor:"gray",
+    borderRadius: 10,
+    borderColor:"grey",
+    borderWidth: 3,
+    margin:10,
+    flex:1
+  }
 });
