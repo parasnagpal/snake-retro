@@ -5,9 +5,7 @@ import GestureView from './src/components/gesture'
 export default function App() {
   return (
     <View style={styles.container}>
-      <View style={styles.grid}>
-         <GestureView/> 
-      </View>
+      <GestureView/> 
     </View>
   );
 }
