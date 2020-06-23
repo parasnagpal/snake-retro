@@ -1,6 +1,7 @@
 import React , {Component} from 'react';
 import {View,Text,StyleSheet} from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
+import Grid from './grid'
 
 class GestureView extends React.Component{
     constructor(props){
@@ -57,6 +58,7 @@ class GestureView extends React.Component{
             >
                 <View style={styles.gestureAreaStyle}>
                     <Text>{this.state.text}</Text>
+                    <Grid/>
                 </View>
             </GestureRecognizer>
         );
