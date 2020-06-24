@@ -8,6 +8,8 @@ class GestureView extends React.Component{
         super(props);
         this.state={
             text:"Check swipe",
+            gridWidth:0,
+            gridHeight:0
         }
     }
 
@@ -35,6 +37,13 @@ class GestureView extends React.Component{
         })
     }
 
+    findDimensions(layout){
+        this.setState({
+            gridHeight:Math.floor(layout.height/10),
+            gridWidth:Math.floor(layout.width/10)
+        })
+    }
+
     render(){
         const styles=StyleSheet.create({
             gestureAreaStyle:{
@@ -43,7 +52,7 @@ class GestureView extends React.Component{
                 borderColor:"grey",
                 borderWidth: 3,
                 margin:10,
-                flex:1
+                flex:1,
             }
         })
         return(
@@ -56,9 +65,10 @@ class GestureView extends React.Component{
                     flex:1
                 }}
             >
-                <View style={styles.gestureAreaStyle}>
+                <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)}
+                    style={styles.gestureAreaStyle}>
                     <Text>{this.state.text}</Text>
-                    <Grid/>
+                    <Grid height={this.state.gridHeight} width={this.state.gridWidth}/>
                 </View>
             </GestureRecognizer>
         );
