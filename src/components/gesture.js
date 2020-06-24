@@ -53,6 +53,7 @@ class GestureView extends React.Component{
                 borderWidth: 3,
                 margin:10,
                 flex:1,
+                alignItems:'center'
             }
         })
         return(
