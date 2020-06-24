@@ -5,9 +5,16 @@ class Grid extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            rows:40,
-            cols:40
+            rows:0,
+            cols:0
         }
+    }
+
+    componentDidMount(){
+        this.setState({
+            rows:this.props.height-5,
+            cols:this.props.width-5
+        })
     }
 
     addcols(){
