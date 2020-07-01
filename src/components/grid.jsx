@@ -11,6 +11,11 @@ class Grid extends React.Component{
             snakeCoordinates:[[0,0]],
             dir:'R'
         }
+        this.moveDown=this.moveDown.bind(this);
+        this.snakeMovement=this.snakeMovement.bind(this);
+        this.prepareSnakeState=this.prepareSnakeState.bind(this);
+        this.addcols=this.addcols.bind(this);
+        this.addrows=this.addrows.bind(this);
     }
 
     prepareSnakeState(){
@@ -38,21 +43,23 @@ class Grid extends React.Component{
         })
     }
 
+    moveDown(){
+        let snakeCoordinates=this.state.snakeCoordinates;
+        let length=snakeCoordinates.length;
+        let first=snakeCoordinates[0];
+        let last=snakeCoordinates[length-1]
+        snakeCoordinates.shift()
+        snakeCoordinates.push([last[0]+1,last[1]]);
+        console.log(snakeCoordinates)
+        this.setState({
+            snakeCoordinates,
+        })
+    }
+
     snakeMovement(){
-        var snakeGrid=this.state.snakeGrid;
-        var snakeCoordinates=this.state.snakeCoordinates;
-        setInterval(()=>{
-            let firstx=snakeCoordinates[0][0];
-            let firsty=snakeCoordinates[0][1];
-            let lastx=snakeCoordinates[snakeCoordinates.length-1][0];
-            let lasty=snakeCoordinates[snakeCoordinates.length-1][1];
-            //console.log(firstx+1)
-            snakeCoordinates.push([firstx+1,firsty]);
-            snakeCoordinates.shift();
-            snakeGrid[firstx+1][firsty]=1;
-            snakeGrid[lastx][lasty]=0;
-            console.log(snakeCoordinates)
-        },1000);
+        this.interval=setInterval(()=>{
+            this.moveDown();    
+        },2000);
     }
 
     componentDidMount(){
@@ -69,6 +76,7 @@ class Grid extends React.Component{
             })
         })
     }
+
 
     addcols(row){
         let columns=[];
