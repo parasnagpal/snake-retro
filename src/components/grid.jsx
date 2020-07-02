@@ -43,6 +43,16 @@ class Grid extends React.Component{
         })
     }
 
+    gridUpdate(snakeCoordinates,pop,push){
+        let snakeGrid=this.state.snakeGrid;
+        snakeGrid[pop[0]][pop[1]]=0;
+        snakeGrid[push[0]][push[1]]=1;
+        this.setState({
+            snakeGrid,
+            snakeCoordinates
+        })
+    }
+
     moveDown(){
         let snakeCoordinates=this.state.snakeCoordinates;
         let length=snakeCoordinates.length;
@@ -50,10 +60,8 @@ class Grid extends React.Component{
         let last=snakeCoordinates[length-1]
         snakeCoordinates.shift()
         snakeCoordinates.push([last[0]+1,last[1]]);
-        console.log(snakeCoordinates)
-        this.setState({
-            snakeCoordinates,
-        })
+        last[0]++;
+        this.gridUpdate(snakeCoordinates,first,last);
     }
 
     snakeMovement(){
