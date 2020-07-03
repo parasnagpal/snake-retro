@@ -16,6 +16,7 @@ class Grid extends React.Component{
         this.prepareSnakeState=this.prepareSnakeState.bind(this);
         this.addcols=this.addcols.bind(this);
         this.addrows=this.addrows.bind(this);
+        this.gridUpdate=this.gridUpdate.bind(this);
     }
 
     prepareSnakeState(){
@@ -23,7 +24,8 @@ class Grid extends React.Component{
         let rows=this.state.rows;
         let cols=this.state.cols;
         let snakeCoordinates=this.state.snakeCoordinates;
-
+        console.log(rows);
+        console.log(cols);    
         for(let i=0;i<rows;i++){
             let newRow=[]
             for(let j=0;j<cols;j++){
@@ -45,6 +47,9 @@ class Grid extends React.Component{
 
     gridUpdate(snakeCoordinates,pop,push){
         let snakeGrid=this.state.snakeGrid;
+        console.log("Push:"+push);
+        console.log("Pop:"+pop);
+        //console.log(snakeGrid)
         snakeGrid[pop[0]][pop[1]]=0;
         snakeGrid[push[0]][push[1]]=1;
         this.setState({
@@ -60,8 +65,8 @@ class Grid extends React.Component{
         let last=snakeCoordinates[length-1]
         snakeCoordinates.shift()
         snakeCoordinates.push([last[0]+1,last[1]]);
-        last[0]++;
-        this.gridUpdate(snakeCoordinates,first,last);
+        //last[0]+=1;
+        this.gridUpdate(snakeCoordinates,first,[last[0]+1,last[1]]);
     }
 
     snakeMovement(){
@@ -75,6 +80,7 @@ class Grid extends React.Component{
             rows:this.props.height-4,
             cols:this.props.width-4
         },()=>{
+            this.prepareSnakeState();
             let p=new Promise((resolve,reject)=>{
                 this.prepareSnakeState();
                 resolve();
