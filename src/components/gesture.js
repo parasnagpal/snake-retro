@@ -44,6 +44,12 @@ class GestureView extends React.Component{
         })
     }
 
+    Grid(){
+        if(this.state.gridHeight)
+            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth}/>);
+        else return <></>;
+    }
+
     render(){
         const styles=StyleSheet.create({
             gestureAreaStyle:{
@@ -69,7 +75,7 @@ class GestureView extends React.Component{
                 <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)}
                     style={styles.gestureAreaStyle}>
                     <Text>{this.state.text}</Text>
-                    <Grid height={this.state.gridHeight} width={this.state.gridWidth}/>
+                    {this.Grid()}
                 </View>
             </GestureRecognizer>
         );
