@@ -9,32 +9,51 @@ class GestureView extends React.Component{
         this.state={
             text:"Check swipe",
             gridWidth:0,
-            gridHeight:0
+            gridHeight:0,
+            snakeDirection:'down',
+            snakeHorizontal:0,
+            snakeVertical:1
         }
     }
 
     onSwipeUp(){
-        this.setState({
-            text:"Up"
-        })
+        if(this.state.snakeHorizontal)
+            this.setState({
+                text:"Up",
+                snakeDirection:"up",
+                snakeHorizontal:0,
+                snakeVertical:1
+            })
     }
 
     onSwipeDown(){
-        this.setState({
-            text:"Down"
-        })
+        if(this.state.snakeHorizontal)
+            this.setState({
+                text:"Down",
+                snakeDirection:"down",
+                snakeHorizontal:0,
+                snakeVertical:1
+            })
     }
 
     onSwipeLeft(){
-        this.setState({
-            text:"Left"
-        })
+        if(this.state.snakeVertical)
+            this.setState({
+                text:"Left",
+                snakeDirection:"left",
+                snakeHorizontal:1,
+                snakeVertical:0
+            })
     }
 
     onSwipeRight(){
-        this.setState({
-            text:"Right"
-        })
+        if(this.state.snakeVertical)
+            this.setState({
+                text:"Right",
+                snakeDirection:"right",
+                snakeHorizontal:1,
+                snakeVertical:0
+            })
     }
 
     findDimensions(layout){
@@ -46,7 +65,7 @@ class GestureView extends React.Component{
 
     Grid(){
         if(this.state.gridHeight)
-            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth}/>);
+            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection}/>);
         else return <></>;
     }
 

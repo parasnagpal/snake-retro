@@ -9,7 +9,6 @@ class Grid extends React.Component{
             cols:0,
             snakeGrid:[],
             snakeCoordinates:[[0,0]],
-            dir:'R'
         }
         this.moveDown=this.moveDown.bind(this);
         this.snakeMovement=this.snakeMovement.bind(this);
@@ -40,9 +39,50 @@ class Grid extends React.Component{
         this.gridUpdateOnMovement(snakeCoordinates,first,[last[0]+1,last[1]]);
     }
 
+    moveUp(){
+        let snakeCoordinates=this.state.snakeCoordinates;
+        let length=snakeCoordinates.length;
+        let first=snakeCoordinates[0];
+        let last=snakeCoordinates[length-1];
+        snakeCoordinates.shift();
+        snakeCoordinates.push([last[0]-1,last[1]]);
+        this.gridUpdateOnMovement(snakeCoordinates,first,[last[0]-1,last[1]]);
+    }
+
+    moveRight(){
+        let snakeCoordinates=this.state.snakeCoordinates;
+        let length=snakeCoordinates.length;
+        let first=snakeCoordinates[0];
+        let last=snakeCoordinates[length-1];
+        snakeCoordinates.shift();
+        snakeCoordinates.push([last[0],last[1]+1]);
+        this.gridUpdateOnMovement(snakeCoordinates,first,[last[0],last[1]+1]);
+    }
+
+    moveLeft(){
+        let snakeCoordinates=this.state.snakeCoordinates;
+        let length=snakeCoordinates.length;
+        let first=snakeCoordinates[0];
+        let last=snakeCoordinates[length-1];
+        snakeCoordinates.shift();
+        snakeCoordinates.push([last[0],last[1]-1]);
+        this.gridUpdateOnMovement(snakeCoordinates,first,[last[0],last[1]-1]);
+    }
+
+    snakeDirectionSwitch(){
+        if(this.props.direction=="down")
+            this.moveDown();
+        else if(this.props.direction=="up")
+            this.moveUp();
+        else if(this.props.direction=="right")
+            this.moveRight();
+        else    
+            this.moveLeft();  
+    }
+
     snakeMovement(){
         this.interval=setInterval(()=>{
-            this.moveDown();    
+            this.snakeDirectionSwitch();           
         },2000);
     }
 
