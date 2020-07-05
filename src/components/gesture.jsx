@@ -12,8 +12,16 @@ class GestureView extends React.Component{
             gridHeight:0,
             snakeDirection:'down',
             snakeHorizontal:0,
-            snakeVertical:1
+            snakeVertical:1,
+            score:0
         }
+        this.scoreIncrease=this.scoreIncrease.bind(this);
+    }
+
+    scoreIncrease(){
+        this.setState({
+            score:this.state.score+1
+        })
     }
 
     onSwipeUp(){
@@ -65,7 +73,7 @@ class GestureView extends React.Component{
 
     Grid(){
         if(this.state.gridHeight)
-            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection}/>);
+            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection} scoreIncrease={this.scoreIncrease}/>);
         else return <></>;
     }
 
@@ -93,6 +101,7 @@ class GestureView extends React.Component{
             >
                 <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)}
                     style={styles.gestureAreaStyle}>
+                    <Text>{this.state.score}</Text>
                     <Text>{this.state.text}</Text>
                     {this.Grid()}
                 </View>
