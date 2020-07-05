@@ -13,9 +13,12 @@ class GestureView extends React.Component{
             snakeDirection:'down',
             snakeHorizontal:0,
             snakeVertical:1,
-            score:0
+            score:0,
+            gameState:0
         }
         this.scoreIncrease=this.scoreIncrease.bind(this);
+        this.switchKey=this.switchKey.bind(this);
+        this.gameOver=this.gameOver.bind(this);
     }
 
     scoreIncrease(){
@@ -71,10 +74,41 @@ class GestureView extends React.Component{
         })
     }
 
+    switchKey(event){
+        if(event.keyCode>=37 && event.keyCode<=40){
+            console.log(event.keyCode)
+           if(event.keyCode==37)
+                this.onSwipeLeft();
+            else if(this.keyCode==38)
+                this.onSwipeUp();
+            else if(this.keyCode==39)
+                this.onSwipeRight();
+            else    
+                this.onSwipeDown();        
+        }
+    }
+
+    gameOver(){
+        this.setState({
+            gameState:1
+        })
+    }
+
     Grid(){
-        if(this.state.gridHeight)
-            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection} scoreIncrease={this.scoreIncrease}/>);
+        if(this.state.gameState)
+            return <Text>Game Over!</Text> 
+        else if(this.state.gridHeight)
+            return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection} 
+                        scoreIncrease={this.scoreIncrease} gameOver={this.gameOver}/>);
         else return <></>;
+    }
+
+    componentDidMount(){
+        document.addEventListener("keydown",this.switchKey);
+    }
+
+    componentWillUnmount(){
+        document.removeEventListener("keydown",this.switchKey);
     }
 
     render(){
@@ -99,7 +133,7 @@ class GestureView extends React.Component{
                     flex:1
                 }}
             >
-                <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)}
+                <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)} 
                     style={styles.gestureAreaStyle}>
                     <Text>{this.state.score}</Text>
                     <Text>{this.state.text}</Text>
