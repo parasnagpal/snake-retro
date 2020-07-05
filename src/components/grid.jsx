@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import {View,StyleSheet, CheckBox} from 'react-native';
 
 class Grid extends React.Component{
     constructor(props){
@@ -33,12 +33,20 @@ class Grid extends React.Component{
         })
     }
 
+    checkIfValid(push){
+        let x=push[0],y=push[1];
+        if(x<0 || x>=this.props.height || y<0 || y>=this.props.width)
+            this.props.gameOver();
+    }
+
     gridUpdateOnMovement(snakeCoordinates,pop,push){
         let snakeGrid=this.state.snakeGrid;
+        this.checkIfValid(push);
         snakeGrid[pop[0]][pop[1]]=0;
         if(snakeGrid[push[0]][push[1]]){
             this.props.scoreIncrease();
             this.placeFood();
+            snakeGrid[pop[0]][pop[1]]=1;
         }
         snakeGrid[push[0]][push[1]]=1;
         this.setState({
