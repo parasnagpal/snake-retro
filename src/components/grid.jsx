@@ -19,9 +19,27 @@ class Grid extends React.Component{
         this.gridUpdateOnMovement=this.gridUpdateOnMovement.bind(this);
     }
 
+    placeFood(){
+        let snakeGrid=this.state.snakeGrid;
+        let I=Math.floor(Math.random()*this.props.height);
+        let J=Math.floor(Math.random()*this.props.width);
+        while(snakeGrid[I][J]){
+            I=Math.floor(Math.random()*this.props.height);
+            J=Math.floor(Math.random()*this.props.width);
+        }
+        snakeGrid[I][J]=1;
+        this.setState({
+            snakeGrid
+        })
+    }
+
     gridUpdateOnMovement(snakeCoordinates,pop,push){
         let snakeGrid=this.state.snakeGrid;
         snakeGrid[pop[0]][pop[1]]=0;
+        if(snakeGrid[push[0]][push[1]]){
+            this.props.scoreIncrease();
+            this.placeFood();
+        }
         snakeGrid[push[0]][push[1]]=1;
         this.setState({
             snakeGrid,
@@ -83,7 +101,7 @@ class Grid extends React.Component{
     snakeMovement(){
         this.interval=setInterval(()=>{
             this.snakeDirectionSwitch();           
-        },2000);
+        },500);
     }
 
     prepareSnakeState(){
@@ -109,6 +127,8 @@ class Grid extends React.Component{
         this.setState({
             snakeGrid:snakeGrid,
             snakeCoordinates:snakeCoordinates
+        },()=>{
+            this.placeFood();
         })
     }
 
