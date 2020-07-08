@@ -104,11 +104,11 @@ class GestureView extends React.Component{
     }
 
     componentDidMount(){
-        document.addEventListener("keydown",this.switchKey);
+        //document.addEventListener("keydown",this.switchKey);
     }
 
     componentWillUnmount(){
-        document.removeEventListener("keydown",this.switchKey);
+        //document.removeEventListener("keydown",this.switchKey);
     }
 
     render(){

@@ -42,11 +42,13 @@ class Grid extends React.Component{
     gridUpdateOnMovement(snakeCoordinates,pop,push){
         let snakeGrid=this.state.snakeGrid;
         this.checkIfValid(push);
-        snakeGrid[pop[0]][pop[1]]=0;
         if(snakeGrid[push[0]][push[1]]){
             this.props.scoreIncrease();
             this.placeFood();
-            snakeGrid[pop[0]][pop[1]]=1;
+        }
+        else{
+            snakeCoordinates.shift();
+            snakeGrid[pop[0]][pop[1]]=0;
         }
         snakeGrid[push[0]][push[1]]=1;
         this.setState({
@@ -60,7 +62,6 @@ class Grid extends React.Component{
         let length=snakeCoordinates.length;
         let first=snakeCoordinates[0];
         let last=snakeCoordinates[length-1];
-        snakeCoordinates.shift();
         snakeCoordinates.push([last[0]+1,last[1]]);
         this.gridUpdateOnMovement(snakeCoordinates,first,[last[0]+1,last[1]]);
     }
@@ -70,7 +71,6 @@ class Grid extends React.Component{
         let length=snakeCoordinates.length;
         let first=snakeCoordinates[0];
         let last=snakeCoordinates[length-1];
-        snakeCoordinates.shift();
         snakeCoordinates.push([last[0]-1,last[1]]);
         this.gridUpdateOnMovement(snakeCoordinates,first,[last[0]-1,last[1]]);
     }
@@ -80,7 +80,6 @@ class Grid extends React.Component{
         let length=snakeCoordinates.length;
         let first=snakeCoordinates[0];
         let last=snakeCoordinates[length-1];
-        snakeCoordinates.shift();
         snakeCoordinates.push([last[0],last[1]+1]);
         this.gridUpdateOnMovement(snakeCoordinates,first,[last[0],last[1]+1]);
     }
@@ -90,7 +89,6 @@ class Grid extends React.Component{
         let length=snakeCoordinates.length;
         let first=snakeCoordinates[0];
         let last=snakeCoordinates[length-1];
-        snakeCoordinates.shift();
         snakeCoordinates.push([last[0],last[1]-1]);
         this.gridUpdateOnMovement(snakeCoordinates,first,[last[0],last[1]-1]);
     }
