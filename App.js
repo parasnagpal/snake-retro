@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import GestureView from './src/components/gesture';
+import Home from './src/components/home';
 import 'react-native-gesture-handler';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack'
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   }
 });
 
-function Arena(){
+function ArenaComponent(){
   return(
     <View style={styles.container}>
       <GestureView/> 
@@ -31,11 +32,18 @@ function Arena(){
   );
 }
 
+function HomeComponent({navigation}){
+  return(
+    <Home navigation={navigation}/>
+  );
+}
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Arena" component={Arena}/>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Arena" component={ArenaComponent}/>
+        <Stack.Screen name="Home" component={HomeComponent}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
