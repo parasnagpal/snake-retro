@@ -96,7 +96,7 @@ class GestureView extends React.Component{
 
     Grid(){
         if(this.state.gameState)
-            return <Text>Game Over!</Text> 
+            return <Text style={{color:"white"}}>Game Over!</Text> 
         else if(this.state.gridHeight)
             return(<Grid height={this.state.gridHeight} width={this.state.gridWidth} direction={this.state.snakeDirection} 
                         scoreIncrease={this.scoreIncrease} gameOver={this.gameOver}/>);
@@ -114,9 +114,9 @@ class GestureView extends React.Component{
     render(){
         const styles=StyleSheet.create({
             gestureAreaStyle:{
-                backgroundColor:"white",
+                backgroundColor:"black",
                 borderRadius: 10,
-                borderColor:"grey",
+                borderColor:"white",
                 borderWidth: 3,
                 margin:10,
                 flex:1,
@@ -135,8 +135,8 @@ class GestureView extends React.Component{
             >
                 <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)} 
                     style={styles.gestureAreaStyle}>
-                    <Text>{this.state.score}</Text>
-                    <Text>{this.state.text}</Text>
+                    <Text style={{color:"white"}}>{this.state.score}</Text>
+                    <Text style={{color:"white"}}>{this.state.text}</Text>
                     {this.Grid()}
                 </View>
             </GestureRecognizer>
