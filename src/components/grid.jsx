@@ -142,17 +142,17 @@ class Grid extends React.Component{
         let columns=[];
         const style=StyleSheet.create({
             pixel:{
-                borderColor:"grey",
+                borderColor:"black",
                 borderWidth:1,
                 height:10,
                 width:10,
             },
             snake:{
-                borderColor:"grey",
+                borderColor:"white",
                 borderWidth:1,
                 height:10,
                 width:10,
-                backgroundColor:"black"
+                backgroundColor:"white"
             }
         })
         for(let i=0;i<this.state.cols;i++){
@@ -198,7 +198,9 @@ class Grid extends React.Component{
     render(){
         const style=StyleSheet.create({
             grid:{
-                overflow:'hidden'
+                overflow:'hidden',
+                borderColor:"white",
+                borderWidth:3,
             }
         })
         return(
