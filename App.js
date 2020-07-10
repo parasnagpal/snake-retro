@@ -4,14 +4,14 @@ import GestureView from './src/components/gesture';
 import Home from './src/components/home';
 import 'react-native-gesture-handler';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack'
+import {createStackNavigator, HeaderTitle} from '@react-navigation/stack'
 
 const Stack = createStackNavigator();
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'grey',
     justifyContent: 'center',
   },
   grid:{
@@ -43,7 +43,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Arena" component={ArenaComponent}/>
-        <Stack.Screen name="Home" component={HomeComponent}/>
+        <Stack.Screen name="Home" component={HomeComponent} options={{headerTitle:"hello"}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
