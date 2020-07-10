@@ -21,11 +21,11 @@ class Grid extends React.Component{
 
     placeFood(){
         let snakeGrid=this.state.snakeGrid;
-        let I=Math.floor(Math.random()*this.props.height);
-        let J=Math.floor(Math.random()*this.props.width);
+        let I=Math.floor(Math.random()*this.props.height-4);
+        let J=Math.floor(Math.random()*this.props.width-4);
         while(snakeGrid[I][J]){
-            I=Math.floor(Math.random()*this.props.height);
-            J=Math.floor(Math.random()*this.props.width);
+            I=Math.floor(Math.random()*this.props.height-4);
+            J=Math.floor(Math.random()*this.props.width-4);
         }
         snakeGrid[I][J]=1;
         this.setState({
@@ -35,7 +35,7 @@ class Grid extends React.Component{
 
     checkIfValid(push){
         let x=push[0],y=push[1];
-        if(x<0 || x>=this.props.height || y<0 || y>=this.props.width){
+        if(x<0 || x>=this.props.height-4 || y<0 || y>=this.props.width-4){
             this.props.gameOver();
             return false;
         }
