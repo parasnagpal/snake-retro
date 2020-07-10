@@ -116,8 +116,7 @@ class GestureView extends React.Component{
             gestureAreaStyle:{
                 backgroundColor:"black",
                 borderRadius: 10,
-                borderColor:"white",
-                borderWidth: 3,
+                shadowColor:"white",
                 margin:10,
                 flex:1,
                 alignItems:'center'
@@ -135,8 +134,7 @@ class GestureView extends React.Component{
             >
                 <View onLayout={(event)=>this.findDimensions(event.nativeEvent.layout)} 
                     style={styles.gestureAreaStyle}>
-                    <Text style={{color:"white"}}>{this.state.score}</Text>
-                    <Text style={{color:"white"}}>{this.state.text}</Text>
+                    <Text style={{color:"white"}}>Score:{this.state.score}</Text>
                     {this.Grid()}
                 </View>
             </GestureRecognizer>
