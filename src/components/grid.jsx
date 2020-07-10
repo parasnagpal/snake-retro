@@ -113,7 +113,7 @@ class Grid extends React.Component{
             this.moveUp();
         else if(this.props.direction=="right")
             this.moveRight();
-        else    
+        else if(this.props.direction=="left")   
             this.moveLeft();  
     }
 
