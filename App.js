@@ -42,8 +42,8 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Arena" component={ArenaComponent}/>
-        <Stack.Screen name="Home" component={HomeComponent} options={{headerTitle:"hello"}}/>
+        <Stack.Screen name="Arena" component={ArenaComponent} options={{headerTitle:"Snake Retro"}}/>
+        <Stack.Screen name="Home" component={HomeComponent}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
